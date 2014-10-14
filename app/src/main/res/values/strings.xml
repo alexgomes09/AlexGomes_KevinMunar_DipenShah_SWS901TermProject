@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Monitor Patient</string>
+    <string name="hello_world">This will be splash screen</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
