@@ -16,6 +16,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".AddVitalSigns"
+            android:label="@string/title_activity_add_vital_signs"
+            android:parentActivityName=".splash_screen" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.splash_screen" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,26 +1,24 @@
 package com.example.alexgomes_kevinmunar_dipenshah_sws901termproject;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 
-public class splash_screen extends Activity {
+public class AddVitalSigns extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.splash_screen);
+        setContentView(R.layout.activity_add_vital_signs);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.splash_screen, menu);
+        getMenuInflater().inflate(R.menu.add_vital_signs, menu);
         return true;
     }
 
@@ -34,9 +32,5 @@ public class splash_screen extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-    public void onNurseClick(View view) {
-        Intent intent = new Intent(this, AddVitalSigns.class);
-        startActivity(intent);
     }
 }
