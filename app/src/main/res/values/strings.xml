@@ -11,8 +11,9 @@
     <string name="bloodPressure">Blood Pressure</string>
     <string name="heartbeat">Heartbeat</string>
     <string name="bodyTemperature">Body Temperature</string>
-    <string name="addVitalsSign" />
+    <string name="addVitalsSign"></string>
     <string name="addVitalSigns">Add Vital Signs</string>
     <string name="cancel">Cancel</string>
+    <string name="title_activity_patient_location">Patient Location</string>
 
 </resources>
