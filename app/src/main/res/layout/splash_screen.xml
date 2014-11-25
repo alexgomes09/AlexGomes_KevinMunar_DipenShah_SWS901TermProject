@@ -9,28 +9,21 @@
     tools:context=".splash_screen">
 
     <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nurse"
-        android:id="@+id/button"
-        android:layout_marginBottom="119dp"
-        android:layout_marginLeft="57dp"
-        android:layout_alignParentBottom="true"
+        android:text="@string/btnLogin"
+        android:id="@+id/btnSplashScreenLogin"
+        android:textSize="30sp"
+        android:layout_below="@+id/imageView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:onClick="onNurseClick" />
+        android:layout_marginTop="97dp" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/patient"
-        android:id="@+id/button2"
-        android:layout_toEndOf="@+id/button"
-        android:layout_alignTop="@+id/button"
-        android:layout_toRightOf="@+id/button"
-        android:layout_marginLeft="23dp" />
-
-
+        android:id="@+id/imageView"
+        android:src="@drawable/splash_screen_logo"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

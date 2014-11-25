@@ -2,18 +2,22 @@
 <resources>
 
     <string name="app_name">Patient Connect</string>
-    <string name="hello_world">This will be splash screen</string>
     <string name="action_settings">Settings</string>
-    <string name="nurse">I\'m a Nurse</string>
-    <string name="patient">I\'m a patient</string>
-    <string name="title_activity_add_vital_signs">Add Vital Signs</string>
-    <string name="enterVitalSigns">Enter patient\'s vital signs</string>
     <string name="bloodPressure">Blood Pressure</string>
-    <string name="heartbeat">Heartbeat</string>
+    <string name="heartbeat">Heart beat</string>
     <string name="bodyTemperature">Body Temperature</string>
-    <string name="addVitalsSign"></string>
-    <string name="addVitalSigns">Add Vital Signs</string>
     <string name="cancel">Cancel</string>
     <string name="title_activity_patient_location">Patient Location</string>
+
+    <!--login screen-->
+    <string name="userLoginScreen">User Login</string>
+    <string name="username">User Name</string>
+    <string name="password">Password</string>
+    <string name="usertype">User Type</string>
+    <string name="radioNurse">Nurse</string>
+    <string name="radioPatient">Patient</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnRegister">Register</string>
+
 
 </resources>

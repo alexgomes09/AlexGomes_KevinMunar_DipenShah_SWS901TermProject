@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:src="@drawable/login"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/username"
+        android:id="@+id/textView"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtUsername"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignEnd="@+id/imageView"
+        android:singleLine="false"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/password"
+        android:id="@+id/textView2"
+        android:layout_alignStart="@+id/txtUsername"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/txtUsername"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPassword"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignEnd="@+id/txtUsername"
+        android:singleLine="false"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:inputType="textPassword"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/usertype"
+        android:id="@+id/textView3"
+        android:layout_alignStart="@+id/txtPassword"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@+id/txtPassword"
+        android:layout_alignParentLeft="true" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radioNurse"
+        android:id="@+id/radioNurse"
+        android:layout_toStartOf="@+id/radioPatient"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/txtPassword"
+        android:layout_alignStart="@+id/txtPassword"
+        android:layout_marginLeft="44dp" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/radioPatient"
+        android:id="@+id/radioPatient"
+        android:layout_marginRight="46dp"
+        android:layout_alignTop="@+id/radioNurse"
+        android:layout_alignRight="@+id/txtPassword"
+        android:layout_alignEnd="@+id/txtPassword" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnLogin"
+        android:id="@+id/btnLogin"
+        android:textStyle="bold"
+        android:textSize="21sp"
+        android:layout_below="@+id/radioNurse"
+        android:layout_alignEnd="@+id/radioNurse"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:padding="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btnRegister"
+        android:id="@+id/btnRegister"
+        android:textStyle="bold"
+        android:textSize="21sp"
+        android:padding="15dp"
+        android:layout_alignTop="@+id/btnLogin"
+        android:layout_alignRight="@+id/radioPatient"
+        android:layout_alignEnd="@+id/radioPatient" />
+
+</RelativeLayout>
