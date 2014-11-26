@@ -9,7 +9,7 @@
     <string name="cancel">Cancel</string>
     <string name="title_activity_patient_location">Patient Location</string>
 
-    <!--login screen-->
+    <!-- login screen -->
     <string name="userLoginScreen">User Login</string>
     <string name="username">User Name</string>
     <string name="password">Password</string>
@@ -18,6 +18,11 @@
     <string name="radioPatient">Patient</string>
     <string name="btnLogin">Login</string>
     <string name="btnRegister">Register</string>
+    <string name="title_activity_vital_signs">VitalSigns</string>
+    <string name="hello_world">Hello world!</string>
 
+    <string name="enterVitalSigns">Enter patient\'s vital signs</string>
+    <string name="addVitalsSign" />
+    <string name="addVitalSigns">Add Vital Signs</string>
 
 </resources>
