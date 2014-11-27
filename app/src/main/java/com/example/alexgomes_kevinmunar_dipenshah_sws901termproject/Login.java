@@ -10,16 +10,22 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
-import java.io.InputStream;
+import java.io.IOException;
+import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,9 +33,9 @@ import javax.xml.parsers.ParserConfigurationException;
 
 public class Login extends Activity {
 
-    RadioButton radioNurse,radioPatient;
-    TextView txtLoginID,txtPassword;
-    String loginID,password,usertype;
+    RadioButton radioNurse, radioPatient;
+    TextView txtLoginID, txtPassword;
+    String loginID, password, usertype;
     Button btnLogin, btnRegister;
     String URL = "http://lalaskinessentials.com/system_info/login.php?";
 
@@ -38,12 +44,12 @@ public class Login extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        radioNurse  = (RadioButton)findViewById(R.id.radioNurse);
-        radioPatient = (RadioButton)findViewById(R.id.radioPatient);
-        txtLoginID = (TextView)findViewById(R.id.txtUsername);
-        txtPassword = (TextView)findViewById(R.id.txtPassword);
-        btnLogin = (Button)findViewById(R.id.btnLogin);
-        btnRegister = (Button)findViewById(R.id.btnRegister);
+        radioNurse = (RadioButton) findViewById(R.id.radioNurse);
+        radioPatient = (RadioButton) findViewById(R.id.radioPatient);
+        txtLoginID = (TextView) findViewById(R.id.txtUsername);
+        txtPassword = (TextView) findViewById(R.id.txtPassword);
+        btnLogin = (Button) findViewById(R.id.btnLogin);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
         radioNurse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +72,11 @@ public class Login extends Activity {
                 loginID = txtLoginID.getText().toString();
                 password = txtPassword.getText().toString();
 
-                URL +="loginID="+loginID+"&password="+password+"&usertype="+usertype;
+                URL += "loginID=" + loginID + "&password=" + password + "&usertype=" + usertype;
 
-                System.out.println(loginID);
-                System.out.println(password);
-                System.out.println(usertype);
-                System.out.println(URL);
-                new AccessWebServiceTask().execute(URL);
+
+                new LoginTask().execute(URL);
+//                new AccessWebServiceTask().execute("Hello");
             }
         });
 
@@ -84,84 +88,84 @@ public class Login extends Activity {
         });
     }
 
-    // ---Connects using HTTP GET---
-    public static InputStream OpenHttpGETConnection(String url) {
-        InputStream inputStream = null;
-        try {
-            HttpClient httpclient = new DefaultHttpClient();
-            HttpResponse httpResponse = httpclient.execute(new HttpGet(url));
-            inputStream = httpResponse.getEntity().getContent();
-        } catch (Exception e) {
-            Log.d("", e.getLocalizedMessage());
-        }
-        return inputStream;
-    }
 
-    private String WordDefinition(String word) {
-        InputStream in = null;
-        String strDefinition = "";
-        try {
-            in = OpenHttpGETConnection(URL);
-            Document doc = null;
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db;
+
+    protected class LoginTask extends AsyncTask<String, Void, String> {
+
+        public String getXmlFromUrl(String url) {
+            String xml = null;
+
             try {
-                db = dbf.newDocumentBuilder();
-                doc = db.parse(in);
-            } catch (ParserConfigurationException e) {
+                // defaultHttpClient
+                DefaultHttpClient httpClient = new DefaultHttpClient();
+                HttpPost httpPost = new HttpPost(url);
+
+                HttpResponse httpResponse = httpClient.execute(httpPost);
+                HttpEntity httpEntity = httpResponse.getEntity();
+                xml = EntityUtils.toString(httpEntity);
+
+            } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
-            } catch (Exception e) {
+            } catch (ClientProtocolException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-            doc.getDocumentElement().normalize();
+            // return XML
+            return xml;
+        }
 
-            //---retrieve all the <Definition> elements---
-            NodeList definitionElements = doc.getElementsByTagName("xml");
+        public Document getDomElement(String xml){
+            Document doc = null;
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            try {
 
-            //---iterate through each <Definition> elements---
-            for (int i = 0; i < definitionElements.getLength(); i++) {
-                Node itemNode = definitionElements.item(i);
-                if (itemNode.getNodeType() == Node.ELEMENT_NODE)
-                {
-                    //---convert the Definition node into an Element---
-                    Element definitionElement = (Element) itemNode;
+                DocumentBuilder db = dbf.newDocumentBuilder();
 
-                    //---get all the <WordDefinition> elements under
-                    // the <Definition> element---
-                    NodeList wordDefinitionElements = definitionElement.getElementsByTagName("loginInfo");
+                InputSource is = new InputSource();
+                is.setCharacterStream(new StringReader(xml));
+                doc = db.parse(is);
 
-                    strDefinition = "";
-                    //---iterate through each <WordDefinition>
-                    // elements---
-                    for (int j = 0; j <
-                            wordDefinitionElements.getLength(); j++) {
-                        //---get all the child nodes under the
-                        // <WordDefinition> element---
-                        NodeList textNodes =
-                                (wordDefinitionElements.item(j)).
-                                        getChildNodes();
-                        strDefinition +=
-                                ((Node)
-                                        textNodes.item(0)).getNodeValue() +
-                                        ". \n";
+            } catch (ParserConfigurationException e) {
+                Log.e("Error: ", e.getMessage());
+                return null;
+            } catch (SAXException e) {
+                Log.e("Error: ", e.getMessage());
+                return null;
+            } catch (IOException e) {
+                Log.e("Error: ", e.getMessage());
+                return null;
+            }
+
+            return doc;
+        }
+
+        public final String getElementValue( Node elem ) {
+            Node child;
+            if( elem != null){
+                if (elem.hasChildNodes()){
+                    for( child = elem.getFirstChild(); child != null; child = child.getNextSibling() ){
+                        if( child.getNodeType() == Node.TEXT_NODE  ){
+                            return child.getNodeValue();
+                        }
                     }
                 }
             }
-        } catch (Exception e) {
-            Log.d("NetworkingActivity", e.getLocalizedMessage());
+            return "";
         }
-        //---return the definitions of the word---
-        return strDefinition;
-    }
 
-    private class AccessWebServiceTask extends AsyncTask<String, Void, String> {
+        public String getValue(Element item, String str) {
+            NodeList n = item.getElementsByTagName(str);
+            return this.getElementValue(n.item(0));
+        }
+
         protected String doInBackground(String... urls) {
-            return WordDefinition(urls[0]);
+            return getXmlFromUrl(urls[0]);
         }
 
         protected void onPostExecute(String result) {
             Toast.makeText(getBaseContext(), result,Toast.LENGTH_LONG).show();
-            System.out.println("Result"+result);
+            System.out.println("Result= "+result);
         }
     }
 
