@@ -75,6 +75,7 @@ public class Login extends Activity {
                 URL += "loginID=" + loginID + "&password=" + password + "&usertype=" + usertype;
 
 
+                System.out.println("URL = "+URL);
                 new LoginTask().execute(URL);
 //                new AccessWebServiceTask().execute("Hello");
             }
