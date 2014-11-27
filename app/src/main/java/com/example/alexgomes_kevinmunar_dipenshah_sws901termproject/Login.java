@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 public class Login extends Activity {
 
     RadioButton radioNurse,radioPatient;
     Button btnLogin, btnRegister;
+    String URL = "http://lalaskinessentials.com/system_info/login.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,10 +33,12 @@ public class Login extends Activity {
                 radioNurse.setChecked(false);
             }
         });
+        
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
 
             }
         });
