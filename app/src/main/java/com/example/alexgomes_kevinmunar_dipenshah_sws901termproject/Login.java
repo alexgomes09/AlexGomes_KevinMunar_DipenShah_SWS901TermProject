@@ -101,12 +101,9 @@ public class Login extends Activity {
         InputStream in = null;
         String strDefinition = "";
         try {
-            in = OpenHttpGETConnection(
-                    "http://services.aonaware.com/DictService/" +
-                            "DictService.asmx/Define?word=" + word);
+            in = OpenHttpGETConnection(URL);
             Document doc = null;
-            DocumentBuilderFactory dbf =
-                    DocumentBuilderFactory.newInstance();
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db;
             try {
                 db = dbf.newDocumentBuilder();
@@ -119,8 +116,7 @@ public class Login extends Activity {
             doc.getDocumentElement().normalize();
 
             //---retrieve all the <Definition> elements---
-            NodeList definitionElements =
-                    doc.getElementsByTagName("Definition");
+            NodeList definitionElements = doc.getElementsByTagName("xml");
 
             //---iterate through each <Definition> elements---
             for (int i = 0; i < definitionElements.getLength(); i++) {
@@ -132,9 +128,7 @@ public class Login extends Activity {
 
                     //---get all the <WordDefinition> elements under
                     // the <Definition> element---
-                    NodeList wordDefinitionElements =
-                            definitionElement.
-                                    getElementsByTagName("WordDefinition");
+                    NodeList wordDefinitionElements = definitionElement.getElementsByTagName("loginInfo");
 
                     strDefinition = "";
                     //---iterate through each <WordDefinition>
@@ -166,8 +160,8 @@ public class Login extends Activity {
         }
 
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), result,
-                    Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), result,Toast.LENGTH_LONG).show();
+            System.out.println("Result"+result);
         }
     }
 
