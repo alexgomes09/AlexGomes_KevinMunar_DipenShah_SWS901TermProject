@@ -11,7 +11,7 @@ public class VitalSigns extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vital_signs);
+        setContentView(R.layout.vital_signs);
     }
 
 

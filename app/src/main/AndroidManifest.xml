@@ -41,7 +41,7 @@
 
         <activity
             android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.VitalSigns"
-            android:label="@string/title_activity_vital_signs" >
+            android:label="@string/title_vital_signs" >
         </activity>
     </application>
 
