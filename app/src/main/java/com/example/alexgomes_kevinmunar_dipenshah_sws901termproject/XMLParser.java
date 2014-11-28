@@ -3,7 +3,6 @@ package com.example.alexgomes_kevinmunar_dipenshah_sws901termproject;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -32,6 +31,7 @@ import javax.xml.parsers.ParserConfigurationException;
 public class XMLParser extends AsyncTask<String,Void,String> {
 
     Context context;
+    Document doc;
 
     public XMLParser(){
 
@@ -47,7 +47,7 @@ public class XMLParser extends AsyncTask<String,Void,String> {
 
     @Override
     protected void onPostExecute(String s) {
-        Toast.makeText(context, s,Toast.LENGTH_LONG).show();
+        getDomElement(s);
     }
 
     public String getXmlFromUrl(String url) {
@@ -98,6 +98,12 @@ public class XMLParser extends AsyncTask<String,Void,String> {
         return doc;
     }
 
+
+    public String getValue(Element item, String str) {
+        NodeList n = item.getElementsByTagName(str);
+        return this.getElementValue(n.item(0));
+    }
+
     public final String getElementValue( Node elem ) {
         Node child;
         if( elem != null){
@@ -112,8 +118,5 @@ public class XMLParser extends AsyncTask<String,Void,String> {
         return "";
     }
 
-    public String getValue(Element item, String str) {
-        NodeList n = item.getElementsByTagName(str);
-        return this.getElementValue(n.item(0));
-    }
+
 }
