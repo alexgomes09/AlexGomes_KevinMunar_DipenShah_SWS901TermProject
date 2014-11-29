@@ -21,18 +21,18 @@ import java.util.concurrent.ExecutionException;
 public class VitalSigns extends Activity {
 
     TextView txtBodyTemperature,txtHeartBeat,txtBloodPressure;
-    String bodyTemperature,heartRate,bloodPressure,patientID,nurseID;
-    Spinner patientSpinner;
+    String bodyTemperature,heartRate,bloodPressure,nurseID,patientID,userType;
+    Spinner patientOrNurseSpinner;
     Button btnAddVitalSigns,btnCancel;
     String URL = "http://lalaskinessentials.com/system_info/enterVitalSigns.php?";
     XMLParser xmlParser;
     final String PARENT_NODE = "vitalSign";
     final String CHILD_NODE_LOG= "log";
-    final String PARENT_NODE_GETALLPATIENTNAME = "patientName";
+    final String PARENT_NODE_GETALLPATIENTORNURSE = "username";
     final String CHILD_NODE_LOGINID = "loginID";
     Document doc;
     NodeList nl;
-
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +42,17 @@ public class VitalSigns extends Activity {
         txtBodyTemperature = (TextView) findViewById(R.id.bodyTemperature);
         txtHeartBeat = (TextView) findViewById(R.id.heartBeat);
         txtBloodPressure = (TextView) findViewById(R.id.bloodPressure);
-        patientSpinner = (Spinner) findViewById(R.id.patientSpinner);
+        patientOrNurseSpinner = (Spinner) findViewById(R.id.patientOrNurseSpinner);
         btnAddVitalSigns = (Button)findViewById(R.id.btnAddVitalSigns);
+
+        intent = getIntent();
+        userType  = intent.getStringExtra("userType");
+
 
         //get all the patient and add them in spinner
         xmlParser = new XMLParser(VitalSigns.this);
-        String getAllPatientURL = "http://lalaskinessentials.com/system_info/getAllPatient.php";
-        xmlParser.execute(getAllPatientURL);
+        String getAllPatientOrNurse = "http://lalaskinessentials.com/system_info/getAllPatient_Nurse.php?usertype="+userType;
+        xmlParser.execute(getAllPatientOrNurse);
         String result = null;
         try {
             result = xmlParser.get();
@@ -58,30 +62,32 @@ public class VitalSigns extends Activity {
             e.printStackTrace();
         }
         doc = xmlParser.getDomElement(result);
-        nl = doc.getElementsByTagName(PARENT_NODE_GETALLPATIENTNAME);
+        nl = doc.getElementsByTagName(PARENT_NODE_GETALLPATIENTORNURSE);
+        
         LinkedHashMap<String,String> patientLinkedHashMap = new LinkedHashMap<String, String>();
         ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(VitalSigns.this,android.R.layout.simple_spinner_item);
+        
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element)nl.item(i);
             patientLinkedHashMap.put(CHILD_NODE_LOGINID, xmlParser.getValue(e, CHILD_NODE_LOGINID));
             patientNameAdapter.add(patientLinkedHashMap.get(CHILD_NODE_LOGINID));
-            patientSpinner.setAdapter(patientNameAdapter);
+            patientOrNurseSpinner.setAdapter(patientNameAdapter);
             patientNameAdapter.notifyDataSetChanged();
         }
-        patientSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        patientOrNurseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 patientID = adapterView.getSelectedItem().toString();
+                nurseID = adapterView.getSelectedItem().toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
+                nurseID = intent.getStringExtra("nurseID");
+                patientID = intent.getStringExtra("patientID");
             }
         });
         //get patient name end here
 
-        Intent intent = getIntent();
-        nurseID = intent.getStringExtra("nurseID");
 
         btnAddVitalSigns.setOnClickListener(new View.OnClickListener() {
             @Override

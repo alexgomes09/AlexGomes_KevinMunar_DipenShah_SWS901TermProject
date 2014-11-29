@@ -27,6 +27,7 @@ public class Login extends Activity {
     XMLParser xmlParser;
     Document doc;
     NodeList nl;
+    Intent intent;
     final String PARENT_NODE = "loginInfo";
     final String CHILD_NODE_LOGINID = "loginID";
     final String CHILD_NODE_PASSWORD= "password";
@@ -45,11 +46,14 @@ public class Login extends Activity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
 
+        intent = new Intent(Login.this,VitalSigns.class);
+
         radioNurse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 radioPatient.setChecked(false);
                 usertype = "0";
+                intent.putExtra("userType","1");
             }
         });
         radioPatient.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +61,7 @@ public class Login extends Activity {
             public void onClick(View view) {
                 radioNurse.setChecked(false);
                 usertype = "1";
+                intent.putExtra("userType","0");
             }
         });
 
@@ -93,8 +98,8 @@ public class Login extends Activity {
                 }
                 if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
                     if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
-                        Intent intent = new Intent(Login.this,VitalSigns.class);
-                        intent.putExtra("nurseID",map.get(CHILD_NODE_LOGINID));
+                        intent.putExtra("nurseID",loginID);
+                        intent.putExtra("patientID",loginID);
                         startActivity(intent);
                     }else{
                         Toast.makeText(Login.this,map.get(CHILD_NODE_LOG)+"\nPlease register",Toast.LENGTH_LONG).show();
