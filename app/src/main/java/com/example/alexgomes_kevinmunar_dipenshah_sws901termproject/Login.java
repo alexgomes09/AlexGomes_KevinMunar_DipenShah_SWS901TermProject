@@ -27,7 +27,7 @@ public class Login extends Activity {
     XMLParser xmlParser;
     Document doc;
     NodeList nl;
-    Intent intent;
+    //Intent intent;
     final String PARENT_NODE = "loginInfo";
     final String CHILD_NODE_LOGINID = "loginID";
     final String CHILD_NODE_PASSWORD= "password";
@@ -46,6 +46,8 @@ public class Login extends Activity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         btnRegister = (Button) findViewById(R.id.btnRegister);
 
+
+        final Intent intent;
         intent = new Intent(Login.this,VitalSigns.class);
 
         radioNurse.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +72,6 @@ public class Login extends Activity {
             public void onClick(View view) {
 
                 xmlParser = new XMLParser(Login.this);
-
                 loginID = txtLoginID.getText().toString();
                 password = txtPassword.getText().toString();
 
@@ -98,8 +99,7 @@ public class Login extends Activity {
                 }
                 if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
                     if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
-                        intent.putExtra("nurseID",loginID);
-                        intent.putExtra("patientID",loginID);
+                        intent.putExtra("loginID",loginID);
                         startActivity(intent);
                     }else{
                         Toast.makeText(Login.this,map.get(CHILD_NODE_LOG)+"\nPlease register",Toast.LENGTH_LONG).show();
@@ -119,6 +119,7 @@ public class Login extends Activity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 xmlParser = new XMLParser(Login.this);
 
                 loginID = txtLoginID.getText().toString();
@@ -145,8 +146,6 @@ public class Login extends Activity {
                 }
                 if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
                     if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
-                        Intent intent = new Intent(Login.this,VitalSigns.class);
-                        intent.putExtra("nurseID",map.get(CHILD_NODE_LOGINID));
                         startActivity(intent);
                     }else{
                         Toast.makeText(Login.this,map.get(CHILD_NODE_LOG),Toast.LENGTH_LONG).show();

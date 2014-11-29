@@ -48,8 +48,7 @@ public class VitalSigns extends Activity {
         intent = getIntent();
         userType  = intent.getStringExtra("userType");
 
-
-        //get all the patient and add them in spinner
+        //get all the patient or nurse and add them in spinner
         xmlParser = new XMLParser(VitalSigns.this);
         String getAllPatientOrNurse = "http://lalaskinessentials.com/system_info/getAllPatient_Nurse.php?usertype="+userType;
         xmlParser.execute(getAllPatientOrNurse);
@@ -77,13 +76,16 @@ public class VitalSigns extends Activity {
         patientOrNurseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                patientID = adapterView.getSelectedItem().toString();
-                nurseID = adapterView.getSelectedItem().toString();
+                if (userType.equals("1")) {
+                    patientID = adapterView.getSelectedItem().toString(); // careful with the logic happening here. had to spent enough time fixing this part.
+                    nurseID =  intent.getStringExtra("loginID");            // its getting opposite of what intent is sending. and setting them in patient iD and nurseID
+                }else if(userType.equals("0")){
+                    patientID = intent.getStringExtra("loginID");
+                    nurseID = adapterView.getSelectedItem().toString();
+                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-                nurseID = intent.getStringExtra("nurseID");
-                patientID = intent.getStringExtra("patientID");
             }
         });
         //get patient name end here
