@@ -19,6 +19,7 @@
     <!-- Vital Signs screen -->
     <string name="title_vital_signs">Vital Signs</string>
     <string name="enterVitalSigns">Enter patient\'s vital signs</string>
+    <string name="selectPatient">Select patient</string>
     <string name="addVitalSigns">Add Vital Signs</string>
     <string name="btnCancel">Cancel</string>
     <string name="bloodPressure">Blood Pressure</string>

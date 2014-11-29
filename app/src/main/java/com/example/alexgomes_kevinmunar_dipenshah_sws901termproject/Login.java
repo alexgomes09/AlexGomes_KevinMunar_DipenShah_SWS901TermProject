@@ -1,6 +1,7 @@
 package com.example.alexgomes_kevinmunar_dipenshah_sws901termproject;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,9 +22,8 @@ public class Login extends Activity {
     TextView txtLoginID, txtPassword;
     String loginID, password, usertype;
     Button btnLogin, btnRegister;
-    XMLParser xmlParser;
     String URL = "http://lalaskinessentials.com/system_info/login.php?";
-
+    XMLParser xmlParser;
     final String PARENT_NODE = "loginInfo";
     final String CHILD_NODE_LOGINID = "loginID";
     final String CHILD_NODE_PASSWORD= "password";
@@ -34,8 +34,6 @@ public class Login extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-        xmlParser = new XMLParser(Login.this);
 
         radioNurse = (RadioButton) findViewById(R.id.radioNurse);
         radioPatient = (RadioButton) findViewById(R.id.radioPatient);
@@ -62,6 +60,9 @@ public class Login extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                xmlParser = new XMLParser(Login.this);
+
                 loginID = txtLoginID.getText().toString();
                 password = txtPassword.getText().toString();
 
@@ -78,7 +79,6 @@ public class Login extends Activity {
                 }
                 Document doc = xmlParser.getDomElement(result);
                 NodeList nl = doc.getElementsByTagName(PARENT_NODE);
-//                HashMap<String, String> map = new HashMap<String, String>();
                 LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element e = (Element) nl.item(i);
@@ -88,18 +88,32 @@ public class Login extends Activity {
                     map.put(CHILD_NODE_LOG, xmlParser.getValue(e, CHILD_NODE_LOG));
                     System.out.println(map);
                 }
-                Toast.makeText(Login.this,map.toString(),Toast.LENGTH_LONG).show();
+                if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
+                    if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
+                        Intent intent = new Intent(Login.this,VitalSigns.class);
+                        intent.putExtra("patientID",map.get(CHILD_NODE_LOGINID));
+                        intent.putExtra("nurseID",map.get(CHILD_NODE_LOGINID));
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(Login.this,map.get(CHILD_NODE_LOG)+"\nPlease register",Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(Login.this, "Please input everything", Toast.LENGTH_SHORT).show();
+                }
 
                 txtLoginID.setText("");
                 txtPassword.setText("");
                 radioNurse.setChecked(false);
                 radioPatient.setChecked(false);
+                URL = "http://lalaskinessentials.com/system_info/login.php?";
             }
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
 
             }
         });

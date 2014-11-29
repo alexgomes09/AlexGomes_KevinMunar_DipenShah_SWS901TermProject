@@ -13,9 +13,9 @@
             android:ems="10"
             android:id="@+id/bodyTemperature"
         android:hint="@string/bodyTemperature"
-        android:layout_below="@+id/txtEnterVitalSigns"
-        android:layout_alignStart="@+id/heartBeat"
-        android:layout_marginTop="50dp" />
+        android:layout_above="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
             android:layout_width="wrap_content"
@@ -32,10 +32,10 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/heartBeat"
-            android:layout_below="@+id/bodyTemperature"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:hint="@string/heartbeat" />
+       android:hint="@string/heartbeat"
+       android:layout_above="@+id/textView6"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true" />
 
    <EditText
             android:layout_width="fill_parent"
@@ -43,10 +43,11 @@
             android:inputType="number"
             android:ems="10"
             android:id="@+id/bloodPressure"
-            android:layout_below="@+id/heartBeat"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="72dp"
-            android:hint="@string/bloodPressure" />
+       android:hint="@string/bloodPressure"
+       android:layout_above="@+id/btnAddVitalSigns"
+       android:layout_alignParentLeft="true"
+       android:layout_alignParentStart="true"
+       android:layout_marginBottom="53dp" />
 
    <Button
             style="?android:attr/buttonStyleSmall"
@@ -54,10 +55,9 @@
             android:layout_height="wrap_content"
             android:text="@string/addVitalSigns"
             android:id="@+id/btnAddVitalSigns"
-       android:layout_marginTop="37dp"
        android:textStyle="bold"
        android:textSize="18dp"
-       android:layout_below="@+id/bloodPressure"
+       android:layout_alignParentBottom="true"
        android:layout_alignLeft="@+id/txtEnterVitalSigns"
        android:layout_alignStart="@+id/txtEnterVitalSigns" />
 
@@ -79,10 +79,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/bodyTemperature"
         android:id="@+id/textView4"
-        android:layout_below="@+id/txtEnterVitalSigns"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_above="@+id/bodyTemperature"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -90,10 +89,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/heartbeat"
         android:id="@+id/textView5"
-        android:layout_below="@+id/bodyTemperature"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_above="@+id/heartBeat"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,9 +99,28 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/bloodPressure"
         android:id="@+id/textView6"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/heartBeat"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/bloodPressure"
+        android:layout_alignParentLeft="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/patientSpinner"
+        android:layout_below="@+id/txtEnterVitalSigns"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/selectPatient"
+        android:id="@+id/textView7"
+        android:layout_below="@+id/txtEnterVitalSigns"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="22dp" />
 
 </RelativeLayout>
