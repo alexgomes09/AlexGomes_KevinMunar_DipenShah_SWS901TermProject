@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -30,6 +32,7 @@ public class VitalSigns extends Activity {
     final String CHILD_NODE_LOGINID = "loginID";
     Document doc;
     NodeList nl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,16 @@ public class VitalSigns extends Activity {
             patientSpinner.setAdapter(patientNameAdapter);
             patientNameAdapter.notifyDataSetChanged();
         }
+        patientSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                patientID = adapterView.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
         //get patient name end here
 
         Intent intent = getIntent();
@@ -73,14 +86,39 @@ public class VitalSigns extends Activity {
         btnAddVitalSigns.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                xmlParser = new XMLParser(VitalSigns.this);
 
-                bodyTemperature = txtBodyTemperature.getPrivateImeOptions().toString();
-                heartRate = txtHeartBeat.getPrivateImeOptions().toString();
-                bloodPressure = txtBloodPressure.getPrivateImeOptions().toString();
+                if(txtBloodPressure.getText().toString().length() > 0 && txtHeartBeat.getText().toString().length() >0 && txtBodyTemperature.getText().toString().length() > 0){
+                    xmlParser = new XMLParser(VitalSigns.this);
 
-                URL += "bodyTemperature="+bodyTemperature+"&heartRate="+heartRate+"&bloodPressure="+bloodPressure+"&patientID="+patientID+"&nurseID="+nurseID;
+                    bodyTemperature = txtBodyTemperature.getText().toString();
+                    heartRate = txtHeartBeat.getText().toString();
+                    bloodPressure = txtBloodPressure.getText().toString();
 
+                    URL += "bodyTemperature="+bodyTemperature+"&heartRate="+heartRate+"&bloodPressure="+bloodPressure+"&patientID="+patientID+"&nurseID="+"alex";
+                    xmlParser.execute(URL);
+                    String result = null;
+                    try {
+                        result = xmlParser.get();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    }
+                    doc = xmlParser.getDomElement(result);
+                    nl = doc.getElementsByTagName(PARENT_NODE);
+                    LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
+                    for (int i = 0; i < nl.getLength(); i++) {
+                        Element e = (Element) nl.item(i);
+                        map.put(CHILD_NODE_LOGINID,xmlParser.getValue(e,CHILD_NODE_LOGINID));
+                        map.put(CHILD_NODE_LOG, xmlParser.getValue(e, CHILD_NODE_LOG));
+                    }
+                    Toast.makeText(VitalSigns.this,map.get(CHILD_NODE_LOG),Toast.LENGTH_SHORT).show();
+                    txtBodyTemperature.setText("");
+                    txtHeartBeat.setText("");
+                    txtBloodPressure.setText("");
+                }else{
+                    Toast.makeText(VitalSigns.this,"Please enter all the values",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

@@ -104,13 +104,14 @@
         android:layout_alignParentLeft="true" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/patientSpinner"
         android:layout_below="@+id/txtEnterVitalSigns"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp" />
+        android:layout_marginTop="45dp"
+        android:popupBackground="#ffffda7f" />
 
     <TextView
         android:layout_width="wrap_content"
