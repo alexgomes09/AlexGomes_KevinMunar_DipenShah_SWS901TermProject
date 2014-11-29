@@ -94,7 +94,7 @@ public class VitalSigns extends Activity {
                     heartRate = txtHeartBeat.getText().toString();
                     bloodPressure = txtBloodPressure.getText().toString();
 
-                    URL += "bodyTemperature="+bodyTemperature+"&heartRate="+heartRate+"&bloodPressure="+bloodPressure+"&patientID="+patientID+"&nurseID="+"alex";
+                    URL += "bodyTemperature="+bodyTemperature+"&heartRate="+heartRate+"&bloodPressure="+bloodPressure+"&patientID="+patientID+"&nurseID="+nurseID;
                     xmlParser.execute(URL);
                     String result = null;
                     try {
@@ -121,7 +121,6 @@ public class VitalSigns extends Activity {
                 }
             }
         });
-
 
     }
 

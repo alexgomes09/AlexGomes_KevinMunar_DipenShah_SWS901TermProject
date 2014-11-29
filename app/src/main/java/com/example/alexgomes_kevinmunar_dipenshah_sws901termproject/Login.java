@@ -22,8 +22,11 @@ public class Login extends Activity {
     TextView txtLoginID, txtPassword;
     String loginID, password, usertype;
     Button btnLogin, btnRegister;
-    String URL = "http://lalaskinessentials.com/system_info/login.php?";
+    String LOGIN_URL = "http://lalaskinessentials.com/system_info/login.php?";
+    String REGISTER_URL = "http://lalaskinessentials.com/system_info/register.php?";
     XMLParser xmlParser;
+    Document doc;
+    NodeList nl;
     final String PARENT_NODE = "loginInfo";
     final String CHILD_NODE_LOGINID = "loginID";
     final String CHILD_NODE_PASSWORD= "password";
@@ -66,9 +69,9 @@ public class Login extends Activity {
                 loginID = txtLoginID.getText().toString();
                 password = txtPassword.getText().toString();
 
-                URL += "loginID=" + loginID + "&password=" + password + "&usertype=" + usertype;
-                xmlParser.execute(URL);
-                System.out.println(URL);
+                LOGIN_URL += "loginID=" + loginID + "&password=" + password + "&usertype=" + usertype;
+                xmlParser.execute(LOGIN_URL);
+                System.out.println(LOGIN_URL);
                 String result = null;
                 try {
                     result = xmlParser.get();
@@ -77,8 +80,8 @@ public class Login extends Activity {
                 } catch (ExecutionException e) {
                     e.printStackTrace();
                 }
-                Document doc = xmlParser.getDomElement(result);
-                NodeList nl = doc.getElementsByTagName(PARENT_NODE);
+                doc = xmlParser.getDomElement(result);
+                nl = doc.getElementsByTagName(PARENT_NODE);
                 LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element e = (Element) nl.item(i);
@@ -91,7 +94,6 @@ public class Login extends Activity {
                 if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
                     if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
                         Intent intent = new Intent(Login.this,VitalSigns.class);
-                        intent.putExtra("patientID",map.get(CHILD_NODE_LOGINID));
                         intent.putExtra("nurseID",map.get(CHILD_NODE_LOGINID));
                         startActivity(intent);
                     }else{
@@ -105,16 +107,54 @@ public class Login extends Activity {
                 txtPassword.setText("");
                 radioNurse.setChecked(false);
                 radioPatient.setChecked(false);
-                URL = "http://lalaskinessentials.com/system_info/login.php?";
+                LOGIN_URL = "http://lalaskinessentials.com/system_info/login.php?";
             }
         });
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                xmlParser = new XMLParser(Login.this);
 
+                loginID = txtLoginID.getText().toString();
+                password = txtPassword.getText().toString();
 
+                REGISTER_URL += "loginID=" + loginID + "&password=" + password + "&usertype=" + usertype;
+                xmlParser.execute(REGISTER_URL);
+                System.out.println(REGISTER_URL);
+                String result = null;
+                try {
+                    result = xmlParser.get();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+                doc = xmlParser.getDomElement(result);
+                nl = doc.getElementsByTagName(PARENT_NODE);
+                LinkedHashMap<String,String> map = new LinkedHashMap<String, String>();
+                for (int i = 0; i < nl.getLength(); i++) {
+                    Element e = (Element) nl.item(i);
+                    map.put(CHILD_NODE_LOG, xmlParser.getValue(e, CHILD_NODE_LOG));
+                    System.out.println(map);
+                }
+                if(txtLoginID.getText().toString().length() > 0 && txtPassword.getText().toString().length() > 0 && radioNurse.isChecked() || radioPatient.isChecked()){
+                    if(loginID.equals(map.get(CHILD_NODE_LOGINID)) && password.equals(map.get(CHILD_NODE_PASSWORD))&& usertype.equals(map.get(CHILD_NODE_USERTYPE))){
+                        Intent intent = new Intent(Login.this,VitalSigns.class);
+                        intent.putExtra("nurseID",map.get(CHILD_NODE_LOGINID));
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(Login.this,map.get(CHILD_NODE_LOG),Toast.LENGTH_LONG).show();
+                    }
+                }else {
+                    Toast.makeText(Login.this, "Please input everything", Toast.LENGTH_SHORT).show();
+                }
 
+                txtLoginID.setText("");
+                txtPassword.setText("");
+                radioNurse.setChecked(false);
+                radioPatient.setChecked(false);
+                REGISTER_URL = "http://lalaskinessentials.com/system_info/register.php?";
             }
         });
     }
