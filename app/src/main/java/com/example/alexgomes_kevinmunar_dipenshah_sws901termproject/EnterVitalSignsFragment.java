@@ -48,7 +48,7 @@ public class EnterVitalSignsFragment extends Fragment {
         super.onStart();
 
         txtBodyTemperature = (TextView) getView().findViewById(R.id.bodyTemperature);
-        txtHeartBeat = (TextView) getView().findViewById(R.id.heartBeat);
+        txtHeartBeat = (TextView) getView().findViewById(R.id.heartRate);
         txtBloodPressure = (TextView) getView().findViewById(R.id.bloodPressure);
         patientOrNurseSpinner = (Spinner) getView().findViewById(R.id.patientOrNurseSpinner);
         btnAddVitalSigns = (Button)getView().findViewById(R.id.btnAddVitalSigns);
