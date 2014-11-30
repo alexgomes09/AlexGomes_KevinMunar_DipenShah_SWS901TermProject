@@ -48,7 +48,8 @@ public class Login extends Activity {
 
 
         final Intent intent;
-        intent = new Intent(Login.this,VitalSigns.class);
+//        intent = new Intent(Login.this,EnterVitalSignsFragment.class);
+        intent = new Intent(Login.this,AdminPanel.class);
 
         radioNurse.setOnClickListener(new View.OnClickListener() {
             @Override

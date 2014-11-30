@@ -1,9 +1,12 @@
 package com.example.alexgomes_kevinmunar_dipenshah_sws901termproject;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,7 +21,7 @@ import org.w3c.dom.NodeList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.ExecutionException;
 
-public class VitalSigns extends Activity {
+public class EnterVitalSignsFragment extends Fragment {
 
     TextView txtBodyTemperature,txtHeartBeat,txtBloodPressure;
     String bodyTemperature,heartRate,bloodPressure,nurseID,patientID,userType;
@@ -34,22 +37,27 @@ public class VitalSigns extends Activity {
     NodeList nl;
     Intent intent;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.vital_signs);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_vital_signs,container,false);
+    }
 
-        txtBodyTemperature = (TextView) findViewById(R.id.bodyTemperature);
-        txtHeartBeat = (TextView) findViewById(R.id.heartBeat);
-        txtBloodPressure = (TextView) findViewById(R.id.bloodPressure);
-        patientOrNurseSpinner = (Spinner) findViewById(R.id.patientOrNurseSpinner);
-        btnAddVitalSigns = (Button)findViewById(R.id.btnAddVitalSigns);
+    @Override
+    public void onStart() {
+        super.onStart();
 
-        intent = getIntent();
+        txtBodyTemperature = (TextView) getView().findViewById(R.id.bodyTemperature);
+        txtHeartBeat = (TextView) getView().findViewById(R.id.heartBeat);
+        txtBloodPressure = (TextView) getView().findViewById(R.id.bloodPressure);
+        patientOrNurseSpinner = (Spinner) getView().findViewById(R.id.patientOrNurseSpinner);
+        btnAddVitalSigns = (Button)getView().findViewById(R.id.btnAddVitalSigns);
+
+        intent = getActivity().getIntent();
         userType  = intent.getStringExtra("userType");
 
         //get all the patient or nurse and add them in spinner
-        xmlParser = new XMLParser(VitalSigns.this);
+        xmlParser = new XMLParser(getActivity().getApplicationContext());
         String getAllPatientOrNurse = "http://lalaskinessentials.com/system_info/getAllPatient_Nurse.php?usertype="+userType;
         xmlParser.execute(getAllPatientOrNurse);
         String result = null;
@@ -64,7 +72,7 @@ public class VitalSigns extends Activity {
         nl = doc.getElementsByTagName(PARENT_NODE_GETALLPATIENTORNURSE);
         
         LinkedHashMap<String,String> patientLinkedHashMap = new LinkedHashMap<String, String>();
-        ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(VitalSigns.this,android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item);
         
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element)nl.item(i);
@@ -96,7 +104,7 @@ public class VitalSigns extends Activity {
             public void onClick(View view) {
 
                 if(txtBloodPressure.getText().toString().length() > 0 && txtHeartBeat.getText().toString().length() >0 && txtBodyTemperature.getText().toString().length() > 0){
-                    xmlParser = new XMLParser(VitalSigns.this);
+                    xmlParser = new XMLParser(getActivity().getApplicationContext());
 
                     bodyTemperature = txtBodyTemperature.getText().toString();
                     heartRate = txtHeartBeat.getText().toString();
@@ -120,12 +128,12 @@ public class VitalSigns extends Activity {
                         map.put(CHILD_NODE_LOGINID,xmlParser.getValue(e,CHILD_NODE_LOGINID));
                         map.put(CHILD_NODE_LOG, xmlParser.getValue(e, CHILD_NODE_LOG));
                     }
-                    Toast.makeText(VitalSigns.this,map.get(CHILD_NODE_LOG),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(),map.get(CHILD_NODE_LOG),Toast.LENGTH_SHORT).show();
                     txtBodyTemperature.setText("");
                     txtHeartBeat.setText("");
                     txtBloodPressure.setText("");
                 }else{
-                    Toast.makeText(VitalSigns.this,"Please enter all the values",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Please enter all the values",Toast.LENGTH_SHORT).show();
                 }
             }
         });

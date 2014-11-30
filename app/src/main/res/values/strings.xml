@@ -5,6 +5,10 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_patient_location">Patient Location</string>
 
+    <!-- Drawer strings-->
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+
     <!-- login screen -->
     <string name="userLoginScreen">User Login</string>
     <string name="username">User Name</string>
@@ -24,10 +28,16 @@
     <string name="bloodPressure">Blood Pressure</string>
     <string name="heartbeat">Heart beat</string>
     <string name="bodyTemperature">Body Temperature</string>
+
+    <!-- Patient Interface screen -->
     <string name="title_activity_patient_interface">PatientInterface</string>
     <string name="hello_world">Hello world!</string>
     <string name="emergencybtx">Emergency Call</string>
     <string name="infobtx">Notepad</string>
     <string name="symptomsbtx">Check Symptoms</string>
+
+    <!-- Admin Panel screen -->
+    <string name="title_admin_panel">Admin Panel</string>
+
 
 </resources>

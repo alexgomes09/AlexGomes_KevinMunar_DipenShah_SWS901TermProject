@@ -40,12 +40,12 @@
             android:value="AIzaSyBNxgLClXTjyqLDspnnVLNPsJy9qvwFdVE" />
 
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.VitalSigns"
-            android:label="@string/title_vital_signs" >
-        </activity>
-        <activity
             android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.PatientInterface"
             android:label="@string/title_activity_patient_interface" >
+        </activity>
+        <activity
+            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.AdminPanel"
+            android:label="@string/title_admin_panel" >
         </activity>
     </application>
 
