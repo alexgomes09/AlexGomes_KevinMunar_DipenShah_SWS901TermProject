@@ -49,6 +49,7 @@ public class AdminPanel extends Activity {
         // Add Drawer Item to dataList
         dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
         dataList.add(new DrawerItem("Get Vital Sign", R.drawable.get_vital_sign));
+        dataList.add(new DrawerItem("Get Patient Location", R.drawable.patient_location));
 
         adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item,dataList);
 
@@ -99,6 +100,9 @@ public class AdminPanel extends Activity {
                 break;
             case 1:
                 fragment = new GetVitalSignsFragment();
+                break;
+            case 2:
+                fragment = new GetPatientLocation();
                 break;
             default:
                 break;

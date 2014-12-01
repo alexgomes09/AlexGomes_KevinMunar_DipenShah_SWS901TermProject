@@ -40,7 +40,7 @@
             android:value="AIzaSyBNxgLClXTjyqLDspnnVLNPsJy9qvwFdVE" />
 
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.PatientInterface"
+            android:name=".GetPatientLocation"
             android:label="@string/title_activity_patient_interface" >
         </activity>
         <activity
