@@ -31,7 +31,6 @@
 
     <!-- Get Vital Signs screen -->
     <string name="choosePatient">Choose Patient</string>
-    <string name="btnUpdate">Update</string>
 
 
     <!-- Patient Interface screen -->

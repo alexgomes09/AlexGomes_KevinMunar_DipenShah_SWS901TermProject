@@ -24,96 +24,12 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp" />
 
-    <TextView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/bodyTemperature"
-        android:id="@+id/textView8"
-        android:layout_below="@+id/choosePatientSpinner"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_marginTop="20dp" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/txtBodyTemperature"
-        android:layout_below="@+id/textView8"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:hint="@string/bodyTemperature"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:inputType="number" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/heartRate"
-        android:id="@+id/textView9"
-        android:layout_below="@+id/txtBodyTemperature"
-        android:layout_alignLeft="@+id/textView8"
-        android:layout_alignStart="@+id/textView8"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/txtHeartRate"
-        android:hint="@string/heartRate"
-        android:layout_below="@+id/textView9"
+        android:id="@+id/listPatientInfo"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:inputType="number" />
-
-    <EditText
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/txtBloodPressure"
-        android:hint="@string/bloodPressure"
-        android:layout_below="@+id/textView10"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:inputType="number" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/bloodPressure"
-        android:id="@+id/textView10"
-        android:layout_below="@+id/txtHeartRate"
-        android:layout_alignLeft="@+id/textView9"
-        android:layout_alignStart="@+id/textView9"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/btnUpdate"
-        android:id="@+id/btnUpdate"
-        android:layout_marginTop="20dp"
-        android:textSize="25dp"
-        android:padding="15dp"
-        android:layout_below="@+id/txtBloodPressure"
-        android:layout_alignRight="@+id/textView8"
-        android:layout_alignEnd="@+id/textView8" />
+        android:layout_below="@+id/choosePatientSpinner" />
 
 </RelativeLayout>
