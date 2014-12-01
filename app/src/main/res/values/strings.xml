@@ -32,16 +32,18 @@
     <!-- Get Vital Signs screen -->
     <string name="choosePatient">Choose Patient</string>
 
-
     <!-- Patient Interface screen -->
     <string name="title_activity_patient_interface">PatientInterface</string>
     <string name="hello_world">Hello world!</string>
+    <string name="ppbannertxt">Patient Panel</string>
     <string name="emergencybtx">Emergency Call</string>
-    <string name="infobtx">Notepad</string>
+    <string name="motivationbtx">Motivational Video</string>
     <string name="symptomsbtx">Check Symptoms</string>
+    <string name="logoutbtx">Log-off</string>
 
     <!-- Admin Panel screen -->
     <string name="title_admin_panel">Admin Panel</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_patient_panel">PatientPanel</string>
 
 </resources>

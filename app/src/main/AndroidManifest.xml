@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.SplashScreen"
+            android:name=".SplashScreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,11 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.Login"
+            android:name=".Login"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.PatientLocation"
+            android:name=".PatientLocation"
             android:label="@string/title_activity_patient_location" >
         </activity>
 
@@ -44,8 +44,12 @@
             android:label="@string/title_activity_patient_interface" >
         </activity>
         <activity
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.AdminPanel"
+            android:name=".AdminPanel"
             android:label="@string/title_admin_panel" >
+        </activity>
+        <activity
+            android:name=".PatientPanel"
+            android:label="@string/title_activity_patient_panel" >
         </activity>
     </application>
 

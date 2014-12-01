@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +31,7 @@ public class AdminPanel extends Activity {
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     CustomDrawerAdapter adapter;
+    Intent intent;
 
     List<DrawerItem> dataList;
 
@@ -43,13 +45,18 @@ public class AdminPanel extends Activity {
         mTitle = mDrawerTitle = getTitle();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        intent = getIntent();
 
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow,GravityCompat.START);
 
         // Add Drawer Item to dataList
+
         dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
-        dataList.add(new DrawerItem("Get Vital Sign", R.drawable.get_vital_sign));
+        if(intent.getStringExtra(Login.USER_TYPE).equals("1")) {
+            dataList.add(new DrawerItem("Get Vital Sign", R.drawable.get_vital_sign));
+        }
         dataList.add(new DrawerItem("Get Patient Location", R.drawable.patient_location));
+
 
         adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item,dataList);
 
@@ -94,18 +101,31 @@ public class AdminPanel extends Activity {
 
         Fragment fragment = null;
         Bundle args = new Bundle();
-        switch (possition) {
-            case 0:
-                fragment = new EnterVitalSignsFragment();
-                break;
-            case 1:
-                fragment = new GetVitalSignsFragment();
-                break;
-            case 2:
-                fragment = new GetPatientLocation();
-                break;
-            default:
-                break;
+        if(intent.getStringExtra(Login.USER_TYPE).equals("1")) {
+            switch (possition) {
+                case 0:
+                    fragment = new EnterVitalSignsFragment();
+                    break;
+                case 1:
+                    fragment = new GetVitalSignsFragment();
+                    break;
+                case 2:
+                    fragment = new GetPatientLocation();
+                    break;
+                default:
+                    break;
+            }
+        }else if(intent.getStringExtra(Login.USER_TYPE).equals("0")){
+            switch (possition) {
+                case 0:
+                    fragment = new EnterVitalSignsFragment();
+                    break;
+                case 1:
+                    fragment = new GetPatientLocation();
+                    break;
+                default:
+                    break;
+            }
         }
 
         fragment.setArguments(args);

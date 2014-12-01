@@ -54,7 +54,8 @@ public class EnterVitalSignsFragment extends Fragment {
         btnAddVitalSigns = (Button)getView().findViewById(R.id.btnAddVitalSigns);
 
         intent = getActivity().getIntent();
-        userType  = intent.getStringExtra("userType");
+        //userType  = intent.getStringExtra("userType");
+        userType = intent.getStringExtra(Login.USER_TYPE);
 
         //get all the patient or nurse and add them in spinner
         xmlParser = new XMLParser(getActivity().getApplicationContext());

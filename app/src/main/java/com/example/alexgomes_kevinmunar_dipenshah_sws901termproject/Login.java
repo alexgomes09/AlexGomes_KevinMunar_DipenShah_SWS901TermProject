@@ -24,6 +24,7 @@ public class Login extends Activity {
     Button btnLogin, btnRegister;
     String LOGIN_URL = "http://lalaskinessentials.com/system_info/login.php?";
     String REGISTER_URL = "http://lalaskinessentials.com/system_info/register.php?";
+    public final static String USER_TYPE  = "com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.USERTYPE";
     XMLParser xmlParser;
     Document doc;
     NodeList nl;
@@ -56,7 +57,7 @@ public class Login extends Activity {
             public void onClick(View view) {
                 radioPatient.setChecked(false);
                 usertype = "0";
-                intent.putExtra("userType","1");
+                intent.putExtra(USER_TYPE,"1");
             }
         });
         radioPatient.setOnClickListener(new View.OnClickListener() {
@@ -64,10 +65,12 @@ public class Login extends Activity {
             public void onClick(View view) {
                 radioNurse.setChecked(false);
                 usertype = "1";
-                intent.putExtra("userType","0");
+                intent.putExtra(USER_TYPE,"0");
             }
         });
 
+
+        // Login Button Functions
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -117,6 +120,7 @@ public class Login extends Activity {
             }
         });
 
+        // Register Button Functions
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

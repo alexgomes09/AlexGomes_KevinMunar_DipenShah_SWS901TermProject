@@ -107,10 +107,11 @@
         android:textStyle="bold"
         android:textSize="21sp"
         android:layout_below="@+id/radioNurse"
-        android:layout_alignEnd="@+id/radioNurse"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="40dp"
-        android:padding="15dp" />
+        android:padding="15dp"
+        android:layout_toLeftOf="@+id/imageView"
+        android:layout_toStartOf="@+id/imageView" />
 
     <Button
         android:layout_width="wrap_content"
@@ -121,7 +122,7 @@
         android:textSize="21sp"
         android:padding="15dp"
         android:layout_alignTop="@+id/btnLogin"
-        android:layout_alignRight="@+id/radioPatient"
-        android:layout_alignEnd="@+id/radioPatient" />
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
 
 </RelativeLayout>
