@@ -18,6 +18,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.ExecutionException;
 
@@ -100,15 +101,24 @@ public class GetVitalSignsFragment extends Fragment {
                 doc = xmlParser.getDomElement(result);
                 nl = doc.getElementsByTagName(PARENT_NODE);
 
-                HashMap<String,String> map = new HashMap<String, String>();
+                ArrayList<String> patientBloodPressure = new ArrayList<String>();
+                ArrayList<String> patientHeartRate = new ArrayList<String>();
+                ArrayList<String> patientBoodyTemp = new ArrayList<String>();
                 for (int j = 0; j < nl.getLength(); j++) {
-                    Element e = (Element)nl.item(j);
-                    map.put(CHILDNODE_BP,xmlParser.getValue(e,CHILDNODE_BP));
-                    map.put(CHILDNODE_HR,xmlParser.getValue(e,CHILDNODE_HR));
-                    map.put(CHILDNODE_BT, xmlParser.getValue(e, CHILDNODE_BT));
+                    Element e2 = (Element)nl.item(j);
+                    String bp = xmlParser.getValue(e2,CHILDNODE_BP);
+                    String hr= xmlParser.getValue(e2,CHILDNODE_HR);
+                    String bt = xmlParser.getValue(e2,CHILDNODE_BT);
+
+                    patientBloodPressure.add(bp);
+                    patientHeartRate.add(hr);
+                    patientBoodyTemp.add(bt);
                 }
-                patientInfoListView = new PatientInfoListView(getActivity().getApplicationContext(),map);
+                patientInfoListView = new PatientInfoListView(patientBloodPressure,patientHeartRate,patientBoodyTemp);
+
                 listPatientInfo.setAdapter(patientInfoListView);
+
+                URL = "http://lalaskinessentials.com/system_info/getVitalSigns.php?patientID=";
             }
 
             @Override
@@ -118,28 +128,31 @@ public class GetVitalSignsFragment extends Fragment {
         });
     }
 
-    
+
     class PatientInfoListView extends BaseAdapter{
 
-        Context context;
-        String bloodPressure,heartRate,bodyTemperature;
         TextView lblBloodPressure,lblHeartRate,lblBodyTemperature;
-        HashMap<String,String> map = new HashMap<String, String>();
-        public PatientInfoListView(Context c,HashMap<String,String> hashMap){
-            context = c;
-            map = hashMap;
-            bloodPressure = map.get(CHILDNODE_BP);
-            heartRate = map.get(CHILDNODE_HR);
-            bodyTemperature = map.get(CHILDNODE_BT);
+        String bloodPressure,heartRate,boodyTemp;
+        ArrayList<String> patientBloodPressure,patientHeartRate,patientBoodyTemp;
+
+        public PatientInfoListView(String bp,String hr,String bt){
+            bloodPressure = bp;
+            heartRate = hr;
+            boodyTemp = bt;
+        }
+        public PatientInfoListView(ArrayList<String> bp,ArrayList<String> hr,ArrayList<String> bt){
+            patientBloodPressure = bp;
+            patientHeartRate = hr;
+            patientBoodyTemp = bt;
         }
         @Override
         public int getCount() {
-            return map.size();
+            return patientBloodPressure.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return map.get(i);
+            return patientBloodPressure.get(i);
         }
 
         @Override
@@ -149,16 +162,18 @@ public class GetVitalSignsFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-            LayoutInflater inflater =  (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater =  (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.custom_list_getvitalsigns,null);
 
             lblBloodPressure = (TextView)view.findViewById(R.id.lblBloodPressure);
             lblHeartRate = (TextView)view.findViewById(R.id.lblHeartRate);
             lblBodyTemperature= (TextView)view.findViewById(R.id.lblBodyTemperature);
 
-            lblBloodPressure.setText(bloodPressure);
-            lblHeartRate.setText(heartRate);
-            lblBodyTemperature.setText(bodyTemperature);
+
+            lblBloodPressure.setText(patientBloodPressure.get(i).toString());
+            lblHeartRate.setText(patientHeartRate.get(i).toString());
+            lblBodyTemperature.setText(patientBoodyTemp.get(i).toString());
+
             return view;
         }
     }
