@@ -56,6 +56,7 @@ public class AdminPanel extends Activity {
             dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
             dataList.add(new DrawerItem("Get Vital Sign", R.drawable.get_vital_sign));
             dataList.add(new DrawerItem("Get Patient Location", R.drawable.patient_location));
+            dataList.add(new DrawerItem("Send SMS", R.drawable.patient_location));
         }
 
         if(intent.getStringExtra(Login.USER_TYPE).equals("0")){
@@ -118,6 +119,9 @@ public class AdminPanel extends Activity {
                     break;
                 case 2:
                     fragment = new GetPatientLocation();
+                    break;
+                case 3:
+                    fragment = new SendSMS();
                     break;
                 default:
                     break;

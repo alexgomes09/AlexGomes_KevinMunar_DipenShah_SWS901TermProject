@@ -59,4 +59,10 @@
     <string name="possibleMedicationCondition">Possible Medical Condition</string>
     <string name="checkCondition">Check Condition</string>
 
+    <!-- Send SMS screen -->
+    <string name="SMSBanner">Send SMS</string>
+    <string name="phonetxt">Phone Number</string>
+    <string name="smstxt">Message</string>
+    <string name="sendSms">Send Message</string>
+
 </resources>

@@ -11,7 +11,6 @@
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -44,6 +43,7 @@
 
         <!--Alex = AIzaSyCxbs8RsrsKbBAqXLXrybUCLC65MdOr2e4-->
         <!--Dipen = AIzaSyA44Kq_O7oVD9i-3DVZBzM3weYCwiK2zF8 -->
+		<!-- Kevin = AIzaSyBNxgLClXTjyqLDspnnVLNPsJy9qvwFdVE -->
 
         <activity
             android:name=".GetPatientLocation"
