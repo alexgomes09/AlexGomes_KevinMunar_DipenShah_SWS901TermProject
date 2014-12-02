@@ -23,7 +23,7 @@
         android:layout_below="@+id/textView8"
         android:layout_toRightOf="@+id/imageView2"
         android:layout_toEndOf="@+id/imageView2"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
         android:textColor="@android:color/black" />
 
@@ -67,10 +67,10 @@
         android:id="@+id/lblHeartRate"
         android:layout_toEndOf="@+id/textView10"
         android:text="45"
-        android:layout_alignBottom="@+id/textView9"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/textView9"
         android:layout_alignLeft="@+id/lblBloodPressure"
-        android:layout_alignStart="@+id/lblBloodPressure"
-        android:textColor="@android:color/black" />
+        android:layout_alignStart="@+id/lblBloodPressure" />
 
     <TextView
         android:layout_width="wrap_content"

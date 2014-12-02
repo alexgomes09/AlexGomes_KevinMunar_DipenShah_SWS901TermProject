@@ -15,7 +15,12 @@
         android:hint="@string/bodyTemperature"
         android:layout_above="@+id/textView5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="false" />
 
     <TextView
             android:layout_width="wrap_content"
@@ -35,7 +40,12 @@
        android:hint="@string/heartRate"
        android:layout_above="@+id/textView6"
        android:layout_alignParentLeft="true"
-       android:layout_alignParentStart="true" />
+       android:layout_alignParentStart="true"
+       android:layout_marginTop="3dp"
+       android:layout_alignParentTop="false"
+       android:layout_alignParentBottom="false"
+       android:layout_alignParentRight="true"
+       android:layout_alignWithParentIfMissing="false" />
 
    <EditText
             android:layout_width="fill_parent"
@@ -47,7 +57,12 @@
        android:layout_above="@+id/btnAddVitalSigns"
        android:layout_alignParentLeft="true"
        android:layout_alignParentStart="true"
-       android:layout_marginBottom="53dp" />
+       android:layout_marginTop="3dp"
+       android:layout_alignParentTop="false"
+       android:layout_alignParentBottom="false"
+       android:layout_alignParentRight="true"
+       android:layout_alignWithParentIfMissing="false"
+       android:layout_marginBottom="40dp" />
 
    <Button
             style="?android:attr/buttonStyleSmall"
@@ -57,9 +72,10 @@
             android:id="@+id/btnAddVitalSigns"
        android:textStyle="bold"
        android:textSize="18dp"
+       android:layout_toStartOf="@+id/Cancel"
        android:layout_alignParentBottom="true"
-       android:layout_alignLeft="@+id/txtEnterVitalSigns"
-       android:layout_alignStart="@+id/txtEnterVitalSigns" />
+       android:layout_toLeftOf="@+id/Cancel"
+       android:layout_marginRight="37dp" />
 
     <Button
             style="?android:attr/buttonStyleSmall"
@@ -67,11 +83,12 @@
             android:layout_height="wrap_content"
             android:text="@string/btnCancel"
             android:id="@+id/Cancel"
-            android:layout_alignTop="@+id/btnAddVitalSigns"
-            android:layout_alignRight="@+id/txtEnterVitalSigns"
-            android:layout_alignEnd="@+id/txtEnterVitalSigns"
         android:textStyle="bold"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        android:layout_marginRight="36dp"
+        android:layout_below="@+id/bloodPressure"
+        android:layout_alignRight="@+id/bloodPressure"
+        android:layout_alignEnd="@+id/bloodPressure" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -81,7 +98,12 @@
         android:id="@+id/textView4"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/bodyTemperature"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -91,7 +113,12 @@
         android:id="@+id/textView5"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/heartRate"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -101,7 +128,12 @@
         android:id="@+id/textView6"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/bloodPressure"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="3dp"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignWithParentIfMissing="false" />
 
     <Spinner
         android:layout_width="fill_parent"
@@ -110,8 +142,8 @@
         android:layout_below="@+id/txtEnterVitalSigns"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="45dp"
-        android:popupBackground="#ffffda7f" />
+        android:layout_marginTop="30dp"
+        style="@style/SpinnerStyle" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -122,6 +154,6 @@
         android:layout_below="@+id/txtEnterVitalSigns"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="22dp" />
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

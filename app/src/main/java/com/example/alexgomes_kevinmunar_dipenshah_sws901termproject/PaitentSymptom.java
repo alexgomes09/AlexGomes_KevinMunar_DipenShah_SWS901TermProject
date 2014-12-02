@@ -64,7 +64,7 @@ public class PaitentSymptom extends Fragment {
         doc = xmlParser.getDomElement(result);
         nl = doc.getElementsByTagName(PARENT_NODE);
 
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),R.layout.custom_spinner_style);
 
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element)nl.item(i);

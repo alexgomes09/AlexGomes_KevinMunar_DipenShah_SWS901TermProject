@@ -73,7 +73,7 @@ public class GetVitalSignsFragment extends Fragment {
         nl = doc.getElementsByTagName(PARENT_NODE_PATIENTNAME);
 
         final HashMap<String, String> patietnHashMap = new HashMap<String, String>();
-        final ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item);
+        final ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),R.layout.custom_spinner_style);
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element)nl.item(i);
             patietnHashMap.put(CHILDNODE_LOGINID,xmlParser.getValue(e,CHILDNODE_LOGINID));

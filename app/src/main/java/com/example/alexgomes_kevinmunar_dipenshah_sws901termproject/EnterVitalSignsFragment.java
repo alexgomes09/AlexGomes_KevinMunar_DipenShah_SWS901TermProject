@@ -80,7 +80,7 @@ public class EnterVitalSignsFragment extends Fragment {
         nl = doc.getElementsByTagName(PARENT_NODE_GETALLPATIENTORNURSE);
         
         LinkedHashMap<String,String> patientLinkedHashMap = new LinkedHashMap<String, String>();
-        ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> patientNameAdapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),R.layout.custom_spinner_style);
         
         for (int i = 0; i < nl.getLength(); i++) {
             Element e = (Element)nl.item(i);

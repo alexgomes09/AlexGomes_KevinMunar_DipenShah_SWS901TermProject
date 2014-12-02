@@ -26,17 +26,16 @@
         android:layout_marginLeft="10dp" />
 
     <EditText
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtUsername"
         android:layout_alignStart="@+id/textView"
-        android:layout_alignEnd="@+id/imageView"
         android:singleLine="false"
         android:layout_below="@+id/textView"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:hint="@string/username" />
+        android:hint="@string/username"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -61,8 +60,6 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:inputType="textPassword"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
         android:hint="@string/password" />
 
     <TextView
@@ -83,21 +80,19 @@
         android:layout_height="wrap_content"
         android:text="@string/radioNurse"
         android:id="@+id/radioNurse"
-        android:layout_toStartOf="@+id/radioPatient"
+        android:layout_toStartOf="@+id/btnRegister"
         android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/txtPassword"
-        android:layout_alignStart="@+id/txtPassword"
-        android:layout_marginLeft="44dp" />
+        android:layout_toLeftOf="@+id/btnRegister" />
 
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/radioPatient"
         android:id="@+id/radioPatient"
-        android:layout_marginRight="46dp"
         android:layout_alignTop="@+id/radioNurse"
-        android:layout_alignRight="@+id/txtPassword"
-        android:layout_alignEnd="@+id/txtPassword" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="52dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -106,12 +101,12 @@
         android:id="@+id/btnLogin"
         android:textStyle="bold"
         android:textSize="21sp"
-        android:layout_below="@+id/radioNurse"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="40dp"
         android:padding="15dp"
-        android:layout_toLeftOf="@+id/imageView"
-        android:layout_toStartOf="@+id/imageView" />
+        android:layout_toStartOf="@+id/imageView"
+        android:layout_alignTop="@+id/btnRegister"
+        android:layout_alignRight="@+id/radioNurse"
+        android:layout_alignEnd="@+id/radioNurse"
+        android:layout_marginRight="24dp" />
 
     <Button
         android:layout_width="wrap_content"
@@ -121,8 +116,9 @@
         android:textStyle="bold"
         android:textSize="21sp"
         android:padding="15dp"
-        android:layout_alignTop="@+id/btnLogin"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        android:layout_below="@+id/radioPatient"
+        android:layout_alignRight="@+id/radioPatient"
+        android:layout_alignEnd="@+id/radioPatient"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
