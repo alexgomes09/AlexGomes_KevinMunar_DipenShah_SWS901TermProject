@@ -51,6 +51,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_patient_panel">PatientPanel</string>
     <string name="title_activity_emergency_sms">EmergencySMS</string>
+    <string name="btnSend">Send Emergency SMS</string>
 
     <!-- Patient Symptom Panel screen -->
     <string name="firstSymtom">Choose First Symptom</string>
