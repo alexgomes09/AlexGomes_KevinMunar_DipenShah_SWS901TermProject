@@ -52,4 +52,10 @@
     <string name="title_activity_patient_panel">PatientPanel</string>
     <string name="title_activity_emergency_sms">EmergencySMS</string>
 
+    <!-- Patient Symptom Panel screen -->
+    <string name="firstSymtom">Choose First Symptom</string>
+    <string name="secondSymptom">Choose Second Symptom</string>
+    <string name="possibleMedicationCondition">Possible Medical Condition</string>
+    <string name="checkCondition">Check Condition</string>
+
 </resources>

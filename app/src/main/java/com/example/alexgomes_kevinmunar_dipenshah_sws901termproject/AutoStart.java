@@ -25,7 +25,6 @@ public class AutoStart extends BroadcastReceiver {
         MyLocation.LocationResult locationResult = new MyLocation.LocationResult() {
             @Override
             public void gotLocation(Location location) {
-                //Got the location!
                 XMLParser xmlParser = new XMLParser(context);
                 String latitude = String.valueOf(location.getLatitude());
                 String longitude = String.valueOf(location.getLongitude());

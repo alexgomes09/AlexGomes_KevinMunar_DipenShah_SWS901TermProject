@@ -39,6 +39,8 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyCxbs8RsrsKbBAqXLXrybUCLC65MdOr2e4" />
 
+        <!--Alex = AIzaSyCxbs8RsrsKbBAqXLXrybUCLC65MdOr2e4-->
+
         <activity
             android:name=".GetPatientLocation"
             android:label="@string/title_activity_patient_interface" >

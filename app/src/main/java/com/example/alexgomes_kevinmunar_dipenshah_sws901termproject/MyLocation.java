@@ -92,7 +92,15 @@ public class MyLocation {
                 locationResult.gotLocation(net_loc);
                 return;
             }
-            locationResult.gotLocation(null);
+            // dipen this part is possibly calling null null .. I put in try catch but in console it still showing null being  called
+            // but atleast app doesnt crush please fix this ASAP. it only happens when patient logs in
+            // so log in as patient as wait for a while.
+            try{
+                locationResult.gotLocation(null);
+
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         }
     }
 
