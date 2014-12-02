@@ -47,17 +47,17 @@
             android:name=".AdminPanel"
             android:label="@string/title_admin_panel" >
         </activity>
-<<<<<<< Updated upstream
+
         <activity
             android:name=".PatientPanel"
             android:label="@string/title_activity_patient_panel" >
         </activity>
-=======
+
         <receiver
             android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.AutoStart"
             android:exported="false">
         </receiver>
->>>>>>> Stashed changes
+
     </application>
 
 </manifest>

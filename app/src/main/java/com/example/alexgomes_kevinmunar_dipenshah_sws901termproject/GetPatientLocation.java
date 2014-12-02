@@ -96,21 +96,26 @@ public class GetPatientLocation extends Fragment {
                 doc = xmlParser.getDomElement(result);
                 nl = doc.getElementsByTagName(PARENT_NODE_PATIENTLOCATION);
 
-                patientLocationAdapter = new PatientLocationAdapter();
-                ArrayList<PatientLocationAdapter> patientLocationAdapters = new ArrayList<PatientLocationAdapter>();
 
+                ArrayList<String> patientLocationAdapters = new ArrayList<String>();
+                ArrayList<String> patientLocationAdapters2 = new ArrayList<String>();
+                ArrayList<String> patientLocationAdapters3 = new ArrayList<String>();
                 for (int j = 0; j < nl.getLength(); j++) {
                     Element e2 = (Element)nl.item(j);
-                    patientLocationAdapter.setLatitude(xmlParser.getValue(e2,CHILD_NODE_LATITUDE));
-                    patientLocationAdapter.setLongitude(xmlParser.getValue(e2, CHILD_NODE_LONGITUDE));
-                    patientLocationAdapter.setCurrentTime(xmlParser.getValue(e2, CHILD_NODE_CURRENTTIME));
 
-                    patientLocationAdapters.add(patientLocationAdapter);
+                    String lat = (xmlParser.getValue(e2,CHILD_NODE_LATITUDE));
+                    String log = (xmlParser.getValue(e2, CHILD_NODE_LONGITUDE));
+                    String curTime = (xmlParser.getValue(e2, CHILD_NODE_CURRENTTIME));
 
+                    patientLocationAdapters.add(lat);
+                    patientLocationAdapters2.add(log);
+                    patientLocationAdapters3.add(curTime);
                 }
-                patientLocationAdapter = new PatientLocationAdapter(patientLocationAdapters);
-                System.out.println(patientLocationAdapter.currentTime);
+
+                patientLocationAdapter = new PatientLocationAdapter(patientLocationAdapters,patientLocationAdapters2,patientLocationAdapters3);
                 listOfPatientLocation.setAdapter(patientLocationAdapter);
+
+                URL = "http://lalaskinessentials.com/system_info/getPatientLocation.php?patientID=";
             }
 
             @Override
@@ -123,61 +128,43 @@ public class GetPatientLocation extends Fragment {
     class PatientLocationAdapter extends BaseAdapter {
 
         TextView lblLocationName,lblLocationTime;
+        ArrayList<String> patientLocationArrayList1,patientLocationArrayList2, patientLocationArrayList3;
 
-        ArrayList<PatientLocationAdapter> patientLocationArrayList;
-        private String latitude;
-        private String currentTime;
-        private String longitude;
-
-        public void setLatitude(String latitude) {
-            this.latitude = latitude;
-        }
-
-        public void setCurrentTime(String currentTime) {
-            this.currentTime = currentTime;
-        }
-
-        public void setLongitude(String longitude) {
-            this.longitude = longitude;
-        }
-
-        public PatientLocationAdapter(String latitude, String longitude, String currentTime) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.currentTime = currentTime;
-        }
-        public PatientLocationAdapter(ArrayList<PatientLocationAdapter> arrayList){
-            patientLocationArrayList = arrayList;
-        }
-
-        public PatientLocationAdapter(){
-
+        public PatientLocationAdapter(ArrayList<String> arrayList1,ArrayList<String> arrayList2, ArrayList<String> arrayList3){
+            patientLocationArrayList1 = arrayList1;
+            patientLocationArrayList2 = arrayList2;
+            patientLocationArrayList3 = arrayList3;
         }
 
         @Override
         public int getCount() {
-            return 0;
+            return patientLocationArrayList1.size();
         }
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return patientLocationArrayList1.get(i);
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             LayoutInflater inflater =  (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.fragment_get_patient_location,null);
+            view = inflater.inflate(R.layout.custom_list_patient_single_location,viewGroup,false);
 
-            lblLocationName = (TextView)getActivity().findViewById(R.id.locationName);
-            lblLocationTime = (TextView)getActivity().findViewById(R.id.locationTime);
+            lblLocationName = (TextView)view.findViewById(R.id.locationName);
+            lblLocationTime = (TextView)view.findViewById(R.id.locationTime);
 
-            lblLocationTime.setText(patientLocationArrayList.get(i).currentTime.toString());
+            patientLocationAdapter.getItem(i);
+            System.out.println(patientLocationArrayList1.get(i));
+            System.out.println(patientLocationArrayList2.get(i));
+            System.out.println(patientLocationArrayList3.get(i));
+
+            lblLocationTime.setText(patientLocationArrayList3.get(i));
 
             return view;
         }
