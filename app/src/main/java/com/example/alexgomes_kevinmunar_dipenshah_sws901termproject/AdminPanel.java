@@ -51,11 +51,17 @@ public class AdminPanel extends Activity {
 
         // Add Drawer Item to dataList
 
-        dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
+
         if(intent.getStringExtra(Login.USER_TYPE).equals("1")) {
+            dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
             dataList.add(new DrawerItem("Get Vital Sign", R.drawable.get_vital_sign));
+            dataList.add(new DrawerItem("Get Patient Location", R.drawable.patient_location));
         }
-        dataList.add(new DrawerItem("Get Patient Location", R.drawable.patient_location));
+
+        if(intent.getStringExtra(Login.USER_TYPE).equals("0")){
+            dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
+            dataList.add(new DrawerItem("Exercise Video", R.drawable.patient_location));
+        }
 
 
         adapter = new CustomDrawerAdapter(this, R.layout.custom_drawer_item,dataList);
@@ -121,7 +127,7 @@ public class AdminPanel extends Activity {
                     fragment = new EnterVitalSignsFragment();
                     break;
                 case 1:
-                    fragment = new GetPatientLocation();
+                    fragment = new PatientVideo();
                     break;
                 default:
                     break;

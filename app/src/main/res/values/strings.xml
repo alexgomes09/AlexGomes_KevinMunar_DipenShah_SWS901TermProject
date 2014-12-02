@@ -40,6 +40,7 @@
     <string name="motivationbtx">Motivational Video</string>
     <string name="symptomsbtx">Check Symptoms</string>
     <string name="logoutbtx">Log-off</string>
+    <string name="videotxt">Exercise Video of the Week</string>
 
     <!-- Admin Panel screen -->
     <string name="title_admin_panel">Admin Panel</string>
