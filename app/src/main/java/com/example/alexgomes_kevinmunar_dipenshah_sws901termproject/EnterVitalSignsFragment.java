@@ -53,6 +53,7 @@ public class EnterVitalSignsFragment extends Fragment {
         txtBloodPressure = (TextView) getView().findViewById(R.id.bloodPressure);
         patientOrNurseSpinner = (Spinner) getView().findViewById(R.id.patientOrNurseSpinner);
         btnAddVitalSigns = (Button)getView().findViewById(R.id.btnAddVitalSigns);
+        btnCancel = (Button)getView().findViewById(R.id.Cancel);
 
         intent = getActivity().getIntent();
         //userType  = intent.getStringExtra("userType");
@@ -143,6 +144,13 @@ public class EnterVitalSignsFragment extends Fragment {
                 }else{
                     Toast.makeText(getActivity(),"Please enter all the values",Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),Login.class);
+                startActivity(intent);
             }
         });
 

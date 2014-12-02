@@ -81,14 +81,14 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/btnCancel"
+            android:text="@string/btnCancelLogout"
             android:id="@+id/Cancel"
         android:textStyle="bold"
         android:textSize="18dp"
-        android:layout_marginRight="36dp"
         android:layout_below="@+id/bloodPressure"
         android:layout_alignRight="@+id/bloodPressure"
-        android:layout_alignEnd="@+id/bloodPressure" />
+        android:layout_alignEnd="@+id/bloodPressure"
+        android:layout_alignBottom="@+id/btnAddVitalSigns" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -64,5 +64,6 @@
     <string name="phonetxt">Phone Number</string>
     <string name="smstxt">Message</string>
     <string name="sendSms">Send Message</string>
+    <string name="btnCancelLogout">Cancel and Logout</string>
 
 </resources>
