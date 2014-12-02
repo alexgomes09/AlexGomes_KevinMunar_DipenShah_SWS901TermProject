@@ -48,16 +48,15 @@
             android:label="@string/title_admin_panel" >
         </activity>
 
-        <activity
-            android:name=".PatientPanel"
-            android:label="@string/title_activity_patient_panel" >
-        </activity>
-
         <receiver
-            android:name="com.example.alexgomes_kevinmunar_dipenshah_sws901termproject.AutoStart"
-            android:exported="false">
+            android:name=".AutoStart"
+            android:exported="false" >
         </receiver>
 
+        <activity
+            android:name=".EmergencySMS"
+            android:label="@string/title_activity_emergency_sms" >
+        </activity>
     </application>
 
 </manifest>

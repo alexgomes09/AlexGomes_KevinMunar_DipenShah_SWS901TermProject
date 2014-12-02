@@ -61,6 +61,7 @@ public class AdminPanel extends Activity {
         if(intent.getStringExtra(Login.USER_TYPE).equals("0")){
             dataList.add(new DrawerItem("Enter Vital Sign", R.drawable.enter_vital_signs));
             dataList.add(new DrawerItem("Exercise Video", R.drawable.patient_location));
+            dataList.add(new DrawerItem("Emergency Call", R.drawable.patient_location));
         }
 
 

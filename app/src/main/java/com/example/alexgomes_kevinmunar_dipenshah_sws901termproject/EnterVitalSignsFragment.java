@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
 
 public class EnterVitalSignsFragment extends Fragment {
 
-    TextView txtBodyTemperature,txtHeartBeat,txtBloodPressure;
+    TextView txtBodyTemperature,txtHeartBeat,txtBloodPressure,selectpatienttxt;
     String bodyTemperature,heartRate,bloodPressure,nurseID,patientID,userType;
     Spinner patientOrNurseSpinner;
     Button btnAddVitalSigns,btnCancel;
@@ -47,6 +47,7 @@ public class EnterVitalSignsFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
+        selectpatienttxt = (TextView) getView().findViewById(R.id.selectpatienttxt);
         txtBodyTemperature = (TextView) getView().findViewById(R.id.bodyTemperature);
         txtHeartBeat = (TextView) getView().findViewById(R.id.heartRate);
         txtBloodPressure = (TextView) getView().findViewById(R.id.bloodPressure);
@@ -56,6 +57,12 @@ public class EnterVitalSignsFragment extends Fragment {
         intent = getActivity().getIntent();
         //userType  = intent.getStringExtra("userType");
         userType = intent.getStringExtra(Login.USER_TYPE);
+
+        if(userType.equals("1")) {
+            selectpatienttxt.setText(getResources().getString(R.string.choosePatient));
+        }else if(userType.equals("0")){
+            selectpatienttxt.setText(getResources().getString(R.string.chooseNurse));
+        }
 
         //get all the patient or nurse and add them in spinner
         xmlParser = new XMLParser(getActivity().getApplicationContext());

@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/selectPatient"
-        android:id="@+id/textView7"
+        android:id="@+id/selectpatienttxt"
         android:layout_below="@+id/txtEnterVitalSigns"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
