@@ -2,6 +2,7 @@ package com.example.alexgomes_kevinmunar_dipenshah_sws901termproject;
 
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +38,8 @@ public class GetPatientLocation extends Fragment {
     String CHILD_NODE_CURRENTTIME = "currenttime";
     final String PARENT_NODE_PATIENTNAME = "username";
     final String CHILDNODE_LOGINID = "loginID";
+    Intent intent;
+    ArrayList<String> patientLocationAdapters,patientLocationAdapters2,patientLocationAdapters3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -84,6 +87,7 @@ public class GetPatientLocation extends Fragment {
                 URL +=adapterView.getSelectedItem().toString();
                 xmlParser.execute(URL);
                 String result = null;
+                intent = new Intent(getActivity(), PatientLocation.class);
 
                 try{
                     result = xmlParser.get();
@@ -97,9 +101,9 @@ public class GetPatientLocation extends Fragment {
                 nl = doc.getElementsByTagName(PARENT_NODE_PATIENTLOCATION);
 
 
-                ArrayList<String> patientLocationAdapters = new ArrayList<String>();
-                ArrayList<String> patientLocationAdapters2 = new ArrayList<String>();
-                ArrayList<String> patientLocationAdapters3 = new ArrayList<String>();
+                patientLocationAdapters = new ArrayList<String>();
+                patientLocationAdapters2 = new ArrayList<String>();
+                patientLocationAdapters3 = new ArrayList<String>();
                 for (int j = 0; j < nl.getLength(); j++) {
                     Element e2 = (Element)nl.item(j);
 
@@ -110,7 +114,9 @@ public class GetPatientLocation extends Fragment {
                     patientLocationAdapters.add(lat);
                     patientLocationAdapters2.add(log);
                     patientLocationAdapters3.add(curTime);
+
                 }
+                
 
                 patientLocationAdapter = new PatientLocationAdapter(patientLocationAdapters,patientLocationAdapters2,patientLocationAdapters3);
                 listOfPatientLocation.setAdapter(patientLocationAdapter);
@@ -123,11 +129,21 @@ public class GetPatientLocation extends Fragment {
 
             }
         });
+        listOfPatientLocation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                intent.putExtra("lat", patientLocationAdapters.get(i));
+                intent.putExtra("long",patientLocationAdapters2.get(i));
+                startActivity(intent);
+
+            }
+        });
+
     }
 
     class PatientLocationAdapter extends BaseAdapter {
 
-        TextView lblLocationName,lblLocationTime;
+        TextView lblLocationTime;
         ArrayList<String> patientLocationArrayList1,patientLocationArrayList2, patientLocationArrayList3;
 
         public PatientLocationAdapter(ArrayList<String> arrayList1,ArrayList<String> arrayList2, ArrayList<String> arrayList3){
@@ -156,7 +172,6 @@ public class GetPatientLocation extends Fragment {
             LayoutInflater inflater =  (LayoutInflater) getActivity().getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.custom_list_patient_single_location,viewGroup,false);
 
-            lblLocationName = (TextView)view.findViewById(R.id.locationName);
             lblLocationTime = (TextView)view.findViewById(R.id.locationTime);
 
             patientLocationAdapter.getItem(i);

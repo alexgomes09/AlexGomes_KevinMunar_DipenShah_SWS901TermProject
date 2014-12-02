@@ -22,6 +22,7 @@ public class PatientLocation extends Activity {
     private LocationManager locationManager;
     private static final long MIN_TIME = 400;
     private static final float MIN_DISTANCE = 1000;
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +33,6 @@ public class PatientLocation extends Activity {
         }catch(Exception e){
             e.printStackTrace();
         }
-
-
     }
 
 
@@ -48,10 +47,12 @@ public class PatientLocation extends Activity {
         }
         Intent intent = getIntent();
         String patientName = intent.getStringExtra("patientName");
-        double latitude = Double.parseDouble(intent.getStringExtra("latitude"));
-        double longitude = Double.parseDouble(intent.getStringExtra("longitude"));
+        String latitude = intent.getStringExtra("lat");
+        String longitude = intent.getStringExtra("long");
+//        double latitude = Double.parseDouble(intent.getStringExtra("latitude"));
+//        double longitude = Double.parseDouble(intent.getStringExtra("longitude"));
 
-        final LatLng geoPoint = new LatLng(latitude,longitude);
+        final LatLng geoPoint = new LatLng(Double.valueOf(latitude),Double.valueOf(longitude));
         Marker pointLocation = googleMap.addMarker(new MarkerOptions().position(geoPoint).title(patientName));
         CameraUpdate view = CameraUpdateFactory.newLatLngZoom(geoPoint, 18);
 

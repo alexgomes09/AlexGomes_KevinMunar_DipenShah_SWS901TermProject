@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 public class PaitentSymptom extends Fragment {
 
     public PaitentSymptom() {
+
     }
 
 
