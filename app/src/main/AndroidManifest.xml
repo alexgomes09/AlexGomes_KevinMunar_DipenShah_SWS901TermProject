@@ -39,7 +39,7 @@
             android:value="@integer/google_play_services_version" />
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA44Kq_O7oVD9i-3DVZBzM3weYCwiK2zF8" />
+            android:value="AIzaSyDB-INKmSsEQ1q4GP9lNjyZdocCNflLgqg" />
 
         <!--Alex = AIzaSyCxbs8RsrsKbBAqXLXrybUCLC65MdOr2e4-->
         <!--Dipen = AIzaSyA44Kq_O7oVD9i-3DVZBzM3weYCwiK2zF8 -->
